@@ -1,0 +1,841 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+*,
+*::before,
+*::after {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+/* 
+====================
+  Variables
+====================
+*/
+
+:root {
+  /* colors */
+  --primary-100: #e2e0ff;
+  --primary-200: #c1beff;
+  --primary-300: #a29dff;
+  --primary-400: #837dff;
+  --primary-500: #645cff;
+  --primary-600: #504acc;
+  --primary-700: #3c3799;
+  --primary-800: #282566;
+  --primary-900: #141233;
+
+  /* grey */
+  --grey-50: #f8fafc;
+  --grey-100: #f1f5f9;
+  --grey-200: #e2e8f0;
+  --grey-300: #cbd5e1;
+  --grey-400: #94a3b8;
+  --grey-500: #64748b;
+  --grey-600: #475569;
+  --grey-700: #334155;
+  --grey-800: #1e293b;
+  --grey-900: #0f172a;
+  /* rest of the colors */
+  --black: #222;
+  --white: #fff;
+  --red-light: #f8d7da;
+  --red-dark: #842029;
+  --green-light: #a1ffb5;
+  --green-dark: #0f5132;
+  --transition: all 0.3s linear;
+}
+
+/* 
+====================
+  Global Styles
+====================
+*/
+
+html {
+  font-size: 62.5%;
+}
+body {
+  font-family: "Inter", sans-serif;
+  background-color: var(--grey-50);
+}
+
+a {
+  text-decoration: none;
+}
+
+a:active {
+  color: var(--primary-600);
+}
+
+image {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.wrapper {
+  width: 90vw;
+  max-width: 1170px;
+  margin: 0 auto;
+}
+
+.btn {
+  color: #fff;
+  background-color: var(--primary-500);
+  border: none;
+  font-size: 1.3rem;
+  letter-spacing: 1px;
+  padding: 0.5rem 1rem;
+  border-radius: 3px;
+  transition: var(--transition);
+}
+
+.btn:hover {
+  cursor: pointer;
+  background-color: var(--primary-600);
+  transform: scale(0.95);
+}
+
+.paynow-btn {
+  font-size: 1.5rem;
+}
+
+.row-grey {
+  background-color: #cbd5e1;
+}
+
+.msg-h1 {
+  margin: 4rem 0;
+  font-size: 2rem;
+  letter-spacing: 1px;
+}
+
+/* 
+====================
+  Loader
+====================
+*/
+
+.loader-container {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loader {
+  border: 10px solid #333;
+  border-radius: 50%;
+  border-top: 10px solid #3498db;
+  width: 80px;
+  height: 80px;
+  animation: spin 1.5s linear infinite;
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* 
+====================
+  Global Container
+====================
+*/
+.global-container {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  min-height: 100vh;
+}
+
+/* 
+====================
+  Navbar
+====================
+*/
+
+.navbar {
+  background-color: var(--white);
+}
+.navbar-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 0;
+}
+.navbar-logo > h1 {
+  font-size: 2.5rem;
+  letter-spacing: 1px;
+  font-weight: 700;
+}
+.navbar-logo > h1 > span:last-child {
+  margin-left: 3px;
+  color: var(--primary-600);
+}
+
+.navbar-profile {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+}
+.navbar-profile > h3 {
+  font-size: 1.7rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+@media screen and (min-width: 768px) {
+  .navbar-logo > h1 {
+    font-size: 3rem;
+  }
+  .navbar-profile > h3 {
+    font-size: 2rem;
+  }
+  .btn {
+    font-size: 1.5rem;
+  }
+}
+
+/* 
+====================
+  Login Page
+====================
+*/
+
+.login {
+  display: grid;
+  place-items: center;
+}
+.login-wrapper {
+  max-width: 500px;
+  background-color: var(--white);
+  margin-top: 7rem;
+  padding: 2.5rem 3rem;
+  box-shadow: 1px 4px 3px var(--grey-300);
+}
+
+.login-form > h3 {
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 2rem;
+  letter-spacing: 1px;
+}
+
+.name-container,
+.email-container,
+.password-container {
+  display: grid;
+  font-size: 1.7rem;
+  font-weight: 600;
+  gap: 5px;
+  letter-spacing: 1px;
+}
+
+.name-container input,
+.email-container input,
+.password-container input {
+  border: none;
+  background-color: var(--grey-100);
+  padding: 0.7rem;
+  border-radius: 5px;
+}
+
+.name-container input:focus,
+.email-container input:focus,
+.password-container input:focus {
+  border: none;
+  outline: 2px solid var(--primary-400);
+}
+
+.email-container {
+  margin-top: 1rem;
+}
+.password-container {
+  margin: 1rem 0 2rem 0;
+}
+
+.login-form .btn {
+  width: 100%;
+}
+
+.login-form > p {
+  font-size: 1.7rem;
+  text-align: center;
+  font-weight: 600;
+  margin-top: 1rem;
+  letter-spacing: 1px;
+}
+
+.login-form > p > span {
+  color: var(--primary-600);
+  transition: var(--transition);
+}
+
+.login-form > p > span:hover {
+  cursor: pointer;
+}
+
+.register-login {
+  font-size: 1.7rem;
+  letter-spacing: 1px;
+  display: flex;
+  gap: 2px;
+  font-weight: 500;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem 0;
+}
+
+.link-btn {
+  font-weight: 500;
+}
+
+/* 
+====================
+  Collections Page
+====================
+*/
+
+.collections {
+  margin: 3rem auto;
+}
+.collections-btn {
+  font-size: 1.5rem;
+  padding: 1rem 1.5rem;
+  border-radius: 5px;
+  background-color: var(--primary-500);
+  color: var(--white);
+  letter-spacing: 2px;
+}
+.collections-container {
+  padding: 2rem 0;
+  display: grid;
+  /* place-items: center; */
+}
+
+.search-form {
+  display: flex;
+  gap: 1rem;
+  margin: 2rem auto;
+}
+
+.search-input {
+  padding: 1rem;
+  border-radius: 5px;
+  border: 2px solid var(--grey-200);
+  width: 100%;
+  max-width: 400px;
+}
+
+.edit-btn:hover,
+.delete-btn:hover {
+  transform: scale(1.05);
+}
+
+.collections-container {
+  margin-top: 4rem;
+  padding: 0;
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+}
+
+.collection-card {
+  padding: 2rem;
+  background-color: var(--white);
+}
+
+.info-container {
+  display: flex;
+  width: 90%;
+  margin: 0 auto;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.7rem;
+  letter-spacing: 1px;
+  margin-top: 1rem;
+}
+
+.btns-container {
+  display: flex;
+  justify-content: center;
+  gap: 4rem;
+  align-items: center;
+  font-size: 1.7rem;
+  letter-spacing: 1px;
+  margin-top: 2rem;
+}
+
+.edit-btn,
+.delete-btn {
+  font-weight: 700;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  padding: 0.7rem 2rem;
+  transition: all 0.2s linear;
+  font-size: 1.7rem;
+}
+
+.edit-btn {
+  background-color: var(--black);
+  color: var(--white);
+}
+.edit-btn:hover {
+  background-color: var(--grey-300);
+  color: var(--black);
+}
+.delete-btn {
+  background-color: var(--grey-300);
+  color: var(--black);
+}
+.delete-btn:hover {
+  background-color: var(--black);
+  color: var(--white);
+}
+
+.collection-delete-form {
+  border: 1px solid black;
+  position: absolute;
+  background-color: rgba(63, 63, 63, 0.411);
+  inset: 0;
+  display: grid;
+  place-items: center;
+}
+
+.collection-delete-form-wrapper {
+  width: 85%;
+  height: 400px;
+  max-width: 768px;
+  margin: 0 auto;
+  border: 1px solid black;
+  background-color: var(--white);
+  padding-top: 10rem;
+  text-align: center;
+}
+
+.collection-delete-form-btns {
+  font-size: 1.7rem;
+  padding: 1rem 2rem;
+  margin-top: 2rem;
+  margin-right: 1rem;
+  border: none;
+  background-color: var(--black);
+  color: var(--white);
+  letter-spacing: 1px;
+  border-radius: 5px;
+}
+
+.collection-delete-form-btns:hover {
+  cursor: pointer;
+  background-color: var(--white);
+  color: black;
+  border: 2px solid black;
+}
+
+/* 
+====================
+  Create Collections Page
+====================
+*/
+
+.create-collections {
+  padding: 2rem 0;
+  display: grid;
+  place-items: center;
+}
+
+.create-collections-wrapper {
+  max-width: 500px;
+  background-color: var(--white);
+  padding: 2.5rem 3rem;
+  margin-top: 2rem;
+  box-shadow: 1px 4px 3px var(--grey-300);
+}
+
+.create-collections-btn-wrapper {
+  margin: 4rem 0;
+}
+
+.create-collections-btn {
+  font-size: 1.5rem;
+  padding: 1rem 1.5rem;
+  border-radius: 5px;
+  background-color: var(--primary-500);
+  color: var(--white);
+  letter-spacing: 2px;
+  margin: 4rem 0;
+}
+
+/* 
+====================
+  Create User Page
+====================
+*/
+
+.create-user {
+  padding: 2rem 0;
+  display: grid;
+  place-items: center;
+}
+
+.create-user .wrapper > a {
+  font-size: 1.4rem;
+  text-decoration: none;
+  color: var(--primary-500);
+}
+
+.create-user .wrapper > a > h4 {
+  font-size: 1.6rem;
+  text-decoration: none;
+  color: var(--primary-500);
+  margin: 1rem 0;
+}
+
+.create-user-wrapper {
+  max-width: 500px;
+  background-color: var(--white);
+  padding: 2.5rem 3rem;
+  margin-top: 2rem;
+  box-shadow: 1px 4px 3px var(--grey-300);
+}
+
+.create-user-form > h3 {
+  font-size: 2.2rem;
+  text-align: center;
+  margin-bottom: 1rem;
+  letter-spacing: 1px;
+}
+
+.email-container,
+.password-container {
+  display: grid;
+  font-size: 1.5rem;
+  font-weight: 600;
+  gap: 5px;
+  letter-spacing: 1px;
+}
+.role-container {
+  display: flex;
+  font-size: 1.5rem;
+  align-items: center;
+  gap: 1rem;
+  margin: 0rem 0 2rem 0;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+.email-container input,
+.password-container input {
+  border: none;
+  background-color: var(--grey-100);
+  padding: 0.5rem;
+  border-radius: 5px;
+}
+
+.email-container input:focus,
+.password-container input:focus {
+  border: none;
+  outline: 2px solid var(--primary-400);
+}
+
+.create-product-form > p {
+  font-size: 1.7rem;
+  text-align: center;
+  font-weight: 600;
+  margin-top: 1rem;
+  letter-spacing: 1px;
+}
+
+.create-product-form > p > span {
+  color: var(--primary-600);
+  transition: var(--transition);
+}
+
+.create-product-form > p > span:hover {
+  cursor: pointer;
+}
+
+/* 
+====================
+  Report Page
+====================
+*/
+
+.report {
+  padding: 2rem 0;
+  display: grid;
+  place-items: center;
+}
+
+.report .wrapper > a {
+  font-size: 1.4rem;
+  text-decoration: none;
+  color: var(--primary-500);
+}
+
+.report .wrapper > a > h4 {
+  font-size: 1.6rem;
+  text-decoration: none;
+  color: var(--primary-500);
+  margin: 1rem 0;
+}
+
+.report-wrapper {
+  max-width: 500px;
+  background-color: var(--white);
+  padding: 2.5rem 3rem;
+  margin-top: 2rem;
+  box-shadow: 1px 4px 3px var(--grey-300);
+}
+
+.report-form > h3 {
+  font-size: 2.2rem;
+  text-align: center;
+  margin-bottom: 1rem;
+  letter-spacing: 1px;
+}
+
+.start-date-container,
+.end-date-container {
+  display: grid;
+  font-size: 1.5rem;
+  font-weight: 600;
+  gap: 5px;
+  letter-spacing: 1px;
+}
+
+.start-date-container input,
+.end-date-container input {
+  border: none;
+  background-color: var(--grey-100);
+  padding: 0.5rem;
+  border-radius: 5px;
+}
+
+.start-date-container input:focus,
+.end-date-container input:focus {
+  border: none;
+  outline: 2px solid var(--primary-400);
+}
+
+.end-date-container {
+  margin: 2rem 0;
+}
+
+.report-form .btn {
+  width: 100%;
+}
+
+.report-form > p {
+  font-size: 1.7rem;
+  text-align: center;
+  font-weight: 600;
+  margin-top: 1rem;
+  letter-spacing: 1px;
+}
+
+.report-form > p > span {
+  color: var(--primary-600);
+  transition: var(--transition);
+}
+
+.report-form > p > span:hover {
+  cursor: pointer;
+}
+
+.payments-display-container {
+  margin: 4rem 0;
+}
+
+/* 
+====================
+  Suppliers Page
+====================
+*/
+
+.suppliers {
+  padding: 2rem 0;
+  display: grid;
+  place-items: center;
+}
+
+.suppliers .wrapper > a > h4 {
+  font-size: 1.6rem;
+  text-decoration: none;
+  color: var(--primary-500);
+  margin: 2rem 0;
+}
+
+.suppliers > h1 {
+  width: 90%;
+  max-width: 1170px;
+  margin: 0 auto;
+}
+
+.suppliers-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.supplier {
+  border-radius: 5px;
+  background-color: var(--white);
+  padding: 2rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  letter-spacing: 2px;
+  font-size: 1.4;
+  transition: var(--transition);
+}
+
+.supplier:hover {
+  cursor: pointer;
+  transform: scale(1.05);
+  background-color: var(--grey-200);
+}
+
+.supplier > h3,
+.supplier > h4 {
+  color: var(--grey-500);
+}
+
+/* 
+====================
+  Suppliers Detail Page
+====================
+*/
+
+.suppliers-detail {
+  padding: 2rem 0;
+  display: grid;
+  place-items: center;
+}
+
+.suppliers-detail .wrapper > a > h4 {
+  font-size: 1.6rem;
+  text-decoration: none;
+  color: var(--primary-500);
+  margin: 2rem 0;
+}
+
+.suppliers > h1 {
+  width: 90%;
+  max-width: 1170px;
+  margin: 0 auto;
+}
+
+.suppliers-detail-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+.supplier-details-product {
+  background-color: var(--white);
+  padding: 1rem 2rem 2rem 2rem;
+  border-radius: 5px;
+  font-size: 1.7rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  max-width: 600px;
+}
+.supplier-details-product p {
+  margin: 1rem 0;
+}
+
+/* 
+====================
+  Paynow Page
+====================
+*/
+
+.paynow {
+  padding: 2rem 0;
+  display: grid;
+  place-items: center;
+}
+
+.paynow .wrapper > a > h4 {
+  font-size: 1.6rem;
+  text-decoration: none;
+  color: var(--primary-500);
+  margin: 2rem 0;
+}
+
+.paynow > h1 {
+  width: 90%;
+  max-width: 1170px;
+  margin: 0 auto;
+}
+
+.paynow-wrapper {
+  max-width: 500px;
+  background-color: var(--white);
+  padding: 2.5rem 3rem;
+  margin-top: 2rem;
+  box-shadow: 1px 4px 3px var(--grey-300);
+}
+
+.paynow-form > h3 {
+  font-size: 2.2rem;
+  text-align: center;
+  margin-bottom: 1rem;
+  letter-spacing: 1px;
+}
+
+.amount-container,
+.sku-container,
+.date-container {
+  display: grid;
+  font-size: 1.5rem;
+  font-weight: 600;
+  gap: 5px;
+  letter-spacing: 1px;
+}
+
+.amount-container input,
+.sku-container input,
+.date-container input {
+  border: none;
+  background-color: var(--grey-100);
+  padding: 0.5rem;
+  border-radius: 5px;
+}
+
+.amount-container input:focus,
+.sku-container input:focus,
+.date-container input:focus {
+  border: none;
+  outline: 2px solid var(--primary-400);
+}
+
+.sku-container {
+  margin: 1rem 0 2rem 0;
+}
+
+.paynow-form .btn {
+  width: 100%;
+}
+
+.create-product-form > p {
+  font-size: 1.7rem;
+  text-align: center;
+  font-weight: 600;
+  margin-top: 1rem;
+  letter-spacing: 1px;
+}
+
+.create-product-form > p > span {
+  color: var(--primary-600);
+  transition: var(--transition);
+}
+
+.create-product-form > p > span:hover {
+  cursor: pointer;
+}

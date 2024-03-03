@@ -1,0 +1,9 @@
+export { default as SharedLayout } from "./SharedLayout";
+export { default as Register } from "./Register";
+export { default as Login } from "./Login";
+export { default as Error } from "./Error";
+export { default as Collections } from "./Collections";
+export { default as CreateCollections } from "./CreateCollections";
+export { default as EditCollections } from "./EditCollections";
+export { default as DeleteCollections } from "./DeleteCollections";
+export { default as ProtectedRoutes } from "./ProtectedRoutes";
