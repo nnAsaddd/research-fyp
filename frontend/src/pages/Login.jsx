@@ -17,12 +17,11 @@ export const action = async ({ request }) => {
     localStorage.setItem("userRole", user.role);
     localStorage.setItem("userId", user._id);
     localStorage.setItem("accessToken", accessToken);
-
     return redirect("/");
   } catch (error) {
-    console.log(error);
-    console.log(error?.response?.data);
-    toast.error(error?.response?.data?.msg);
+    // console.log(error);
+    // console.log(error?.response?.data);
+    toast.error(error?.response?.data?.message);
     return error;
   }
 };

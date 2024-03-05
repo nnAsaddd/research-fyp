@@ -30,7 +30,7 @@ const Collections = () => {
   const { search } = useGlobalContext();
   const { collections } = useLoaderData();
 
-  const filteredCollections = collections.filter((collection) => {
+  const filteredCollections = collections?.filter((collection) => {
     return (
       collection.name.toLowerCase().includes(search) ||
       collection.name.toUpperCase().includes(search)
@@ -44,7 +44,7 @@ const Collections = () => {
       <Link to="/createCollections" className="collections-btn">
         Add Collections
       </Link>
-      {filteredCollections.length > 0 ? (
+      {filteredCollections?.length > 0 ? (
         <div className="collections-container">
           {filteredCollections.map((collection) => {
             const { _id, name, category } = collection;

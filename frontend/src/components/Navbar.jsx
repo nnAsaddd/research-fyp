@@ -1,5 +1,4 @@
 import React from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
@@ -25,7 +24,7 @@ const Navbar = () => {
       <div className="wrapper navbar-wrapper">
         <div className="navbar-logo">
           <h1>
-            <span>Inventory</span>
+            <span>Database</span>
             <span>Manager</span>
           </h1>
         </div>

@@ -10,6 +10,10 @@ import {
   CreateCollections,
   EditCollections,
   DeleteCollections,
+  ResearchPapers,
+  CreateResearchPapers,
+  DeleteResearchPapers,
+  EditResearchPapers,
 } from "./pages";
 
 // // Actions
@@ -18,11 +22,16 @@ import { action as loginAction } from "./pages/Login";
 import { action as createCollectionsAction } from "./pages/CreateCollections";
 import { action as editCollectionAction } from "./pages/EditCollections";
 import { action as deleteCollectionAction } from "./pages/DeleteCollections";
+import { action as editResearchPaperAction } from "./pages/EditResearchPapers";
+import { action as deleteResearchPaperAction } from "./pages/DeleteResearchPapers";
 
 // // Loaders
 import { loader as collectionsLoader } from "./pages/Collections";
 import { loader as editCollectionLoader } from "./pages/EditCollections";
 import { loader as deleteCollectionLoader } from "./pages/DeleteCollections";
+import { loader as researchPapersLoader } from "./pages/ResearchPapers";
+import { loader as editResearchPapersLoader } from "./pages/EditResearchPapers";
+import { loader as deleteResearchPapersLoader } from "./pages/DeleteResearchPapers";
 
 const router = createBrowserRouter([
   {
@@ -55,6 +64,27 @@ const router = createBrowserRouter([
             element: <DeleteCollections />,
             loader: deleteCollectionLoader,
             action: deleteCollectionAction,
+          },
+          {
+            path: "/collections/:collectionId",
+            element: <ResearchPapers />,
+            loader: researchPapersLoader,
+          },
+          {
+            path: "/collections/:collectionId/createResearchPapers",
+            element: <CreateResearchPapers />,
+          },
+          {
+            path: "/collections/:collectionId/editResearchPapers/:id",
+            element: <EditResearchPapers />,
+            loader: editResearchPapersLoader,
+            action: editResearchPaperAction,
+          },
+          {
+            path: "/collections/:collectionId/deleteResearchPapers/:id",
+            element: <DeleteResearchPapers />,
+            loader: deleteResearchPapersLoader,
+            action: deleteResearchPaperAction,
           },
         ],
       },

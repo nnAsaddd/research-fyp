@@ -35,35 +35,37 @@ const CreateCollections = () => {
 
   return (
     <div className="create-collections">
-      <div className="create-collections-btn-wrapper">
-        <Link to="/" className="create-collections-btn">
-          Go back to Collections Page
-        </Link>
-      </div>
-      <div className="wrapper create-collections-wrapper">
-        <Form className="login-form" method="post">
-          <h3>Create Collections</h3>
-          <div className="name-container">
-            <label htmlFor="name">Name</label>
-            <input type="text" name="name" id="name" required />
-          </div>
-          <div className="name-container">
-            <label htmlFor="category">Category</label>
-            <input type="text" name="category" id="category" required />
-          </div>
-          <div className="password-container">
-            <input
-              type="hidden"
-              name="userId"
-              id="userId"
-              value={userId}
-              required
-            />
-          </div>
-          <button type="submit" className="btn" disabled={isSubmitting}>
-            {isSubmitting ? "Please wait..." : "Create Collection"}
-          </button>
-        </Form>
+      <div className="wrapper">
+        <div className="create-collections-btn-wrapper">
+          <Link to="/" className="create-collections-btn">
+            Go back to Collections Page
+          </Link>
+        </div>
+        <div className="wrapper create-collections-wrapper">
+          <Form className="login-form" method="post">
+            <h3>Create Collections</h3>
+            <div className="name-container">
+              <label htmlFor="name">Name</label>
+              <input type="text" name="name" id="name" required />
+            </div>
+            <div className="name-container">
+              <label htmlFor="category">Category</label>
+              <input type="text" name="category" id="category" required />
+            </div>
+            <div className="password-container">
+              <input
+                type="hidden"
+                name="userId"
+                id="userId"
+                value={userId}
+                required
+              />
+            </div>
+            <button type="submit" className="btn" disabled={isSubmitting}>
+              {isSubmitting ? "Please wait..." : "Create Collection"}
+            </button>
+          </Form>
+        </div>
       </div>
     </div>
   );

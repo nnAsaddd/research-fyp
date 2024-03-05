@@ -13,7 +13,7 @@ export const loader = async ({ params }) => {
   const accessToken = localStorage.getItem("accessToken");
   try {
     const { data } = await axios.get(
-      `http://localhost:5000/collections/getSingleCollection/${params.id}`,
+      `http://localhost:5000/researchPapers/getSingleResearchPaper/${params.id}`,
       {
         headers: {
           Authorization: `Bearer ${accessToken}`,
@@ -37,7 +37,7 @@ export const action = async ({ request }) => {
 
   try {
     await axios.patch(
-      "http://localhost:5000/collections",
+      "http://localhost:5000/researchPapers",
       credentials,
       {
         headers: {
@@ -49,7 +49,7 @@ export const action = async ({ request }) => {
       }
     );
     toast.success("Collection Edited Successfully");
-    return redirect("/");
+    return redirect(`/collections/${credentials.collectionId}`);
   } catch (error) {
     console.log(error?.response?.data?.message);
     toast.error(error?.response?.data?.msg);
@@ -57,31 +57,35 @@ export const action = async ({ request }) => {
   }
 };
 
-const EditCollections = () => {
-  const { collection } = useLoaderData();
-  const { _id: collectionId, name, category } = collection;
+const EditResearchPapers = () => {
+  const { researchPaper } = useLoaderData();
+  const { _id, name, physicalLocation, collectionId } = researchPaper;
   const navigation = useNavigation();
   const isSubmitting = navigation.state === "submitting";
-  const userId = localStorage.getItem("userId");
 
   return (
-    <div className="edit-collections">
+    <div className="edit-researchPapers/">
       <div className="wrapper">
         <div className="create-collections-btn-wrapper">
-          <Link to="/" className="create-collections-btn">
-            Go back to Collections Page
+          <Link
+            to={`/collections/${collectionId}`}
+            className="create-collections-btn"
+          >
+            Go back to Research Papers Page
           </Link>
         </div>
         <div className="wrapper create-collections-wrapper">
           <Form className="login-form" method="post">
             <h3>Edit Collections</h3>
             <div className="password-container">
+              <input type="hidden" name="id" id="id" value={_id} />
+            </div>
+            <div className="password-container">
               <input
                 type="hidden"
                 name="collectionId"
                 id="collectionId"
                 value={collectionId}
-                required
               />
             </div>
             <div className="name-container">
@@ -94,23 +98,13 @@ const EditCollections = () => {
                 required
               />
             </div>
-            <div className="name-container">
-              <label htmlFor="category">Category</label>
+            <div className="name-container" style={{ margin: "2rem 0" }}>
+              <label htmlFor="category">Physical Location</label>
               <input
                 type="text"
-                name="category"
-                id="category"
-                defaultValue={category}
-                required
-              />
-            </div>
-            <div className="password-container">
-              <input
-                type="hidden"
-                name="userId"
-                id="userId"
-                value={userId}
-                required
+                name="physicalLocation"
+                id="physicalLocation"
+                defaultValue={physicalLocation}
               />
             </div>
             <button type="submit" className="btn" disabled={isSubmitting}>
@@ -123,4 +117,4 @@ const EditCollections = () => {
   );
 };
 
-export default EditCollections;
+export default EditResearchPapers;

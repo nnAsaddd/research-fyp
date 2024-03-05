@@ -8,12 +8,12 @@ import {
   useNavigation,
   useLoaderData,
 } from "react-router-dom";
-
 export const loader = async ({ params }) => {
   const accessToken = localStorage.getItem("accessToken");
+
   try {
     const { data } = await axios.get(
-      `http://localhost:5000/collections/getSingleCollection/${params.id}`,
+      `http://localhost:5000/researchPapers/getSingleResearchPaper/${params.id}`,
       {
         headers: {
           Authorization: `Bearer ${accessToken}`,
@@ -36,9 +36,8 @@ export const action = async ({ request }) => {
   const accessToken = localStorage.getItem("accessToken");
 
   try {
-    await axios.patch(
-      "http://localhost:5000/collections",
-      credentials,
+    await axios.delete(
+      `http://localhost:5000/researchPapers/${credentials.id}`,
       {
         headers: {
           Authorization: `Bearer ${accessToken}`,
@@ -48,39 +47,52 @@ export const action = async ({ request }) => {
         withCredentials: true,
       }
     );
-    toast.success("Collection Edited Successfully");
-    return redirect("/");
+    toast.success("Research Paper Deleted Successfully");
+    return redirect(`/collections/${credentials.collectionId}`);
   } catch (error) {
     console.log(error?.response?.data?.message);
-    toast.error(error?.response?.data?.msg);
+    toast.error(error?.response?.data?.message);
     return error;
   }
 };
 
-const EditCollections = () => {
-  const { collection } = useLoaderData();
-  const { _id: collectionId, name, category } = collection;
+const DeleteResearchPapers = () => {
+  const { researchPaper } = useLoaderData();
+  const { _id, name, physicalLocation, collectionId } = researchPaper;
   const navigation = useNavigation();
   const isSubmitting = navigation.state === "submitting";
-  const userId = localStorage.getItem("userId");
 
   return (
     <div className="edit-collections">
       <div className="wrapper">
         <div className="create-collections-btn-wrapper">
-          <Link to="/" className="create-collections-btn">
-            Go back to Collections Page
+          <Link
+            to={`/collections/${collectionId}`}
+            className="create-collections-btn"
+          >
+            Go back to Research Papers Page
           </Link>
         </div>
         <div className="wrapper create-collections-wrapper">
           <Form className="login-form" method="post">
-            <h3>Edit Collections</h3>
+            <h3>Are you sure you want to delete this Research Paper?</h3>
+            <div className="password-container">
+              <input
+                type="hidden"
+                name="id"
+                id="id"
+                value={_id}
+                readOnly
+                required
+              />
+            </div>
             <div className="password-container">
               <input
                 type="hidden"
                 name="collectionId"
                 id="collectionId"
                 value={collectionId}
+                readOnly
                 required
               />
             </div>
@@ -90,31 +102,24 @@ const EditCollections = () => {
                 type="text"
                 name="name"
                 id="name"
-                defaultValue={name}
+                value={name}
+                readOnly
                 required
               />
             </div>
-            <div className="name-container">
-              <label htmlFor="category">Category</label>
+            <div className="name-container" style={{ margin: "2rem 0" }}>
+              <label htmlFor="category">Physical Location</label>
               <input
                 type="text"
-                name="category"
-                id="category"
-                defaultValue={category}
-                required
-              />
-            </div>
-            <div className="password-container">
-              <input
-                type="hidden"
-                name="userId"
-                id="userId"
-                value={userId}
+                name="physicalLocation"
+                id="physicalLocation"
+                value={physicalLocation}
+                readOnly
                 required
               />
             </div>
             <button type="submit" className="btn" disabled={isSubmitting}>
-              {isSubmitting ? "Please wait..." : "Edit Collection"}
+              {isSubmitting ? "Deleting..." : "Delete Research Paper"}
             </button>
           </Form>
         </div>
@@ -123,4 +128,4 @@ const EditCollections = () => {
   );
 };
 
-export default EditCollections;
+export default DeleteResearchPapers;

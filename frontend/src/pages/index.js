@@ -6,4 +6,8 @@ export { default as Collections } from "./Collections";
 export { default as CreateCollections } from "./CreateCollections";
 export { default as EditCollections } from "./EditCollections";
 export { default as DeleteCollections } from "./DeleteCollections";
+export { default as ResearchPapers } from "./ResearchPapers";
+export { default as CreateResearchPapers } from "./CreateResearchPapers";
+export { default as EditResearchPapers } from "./EditResearchPapers";
+export { default as DeleteResearchPapers } from "./DeleteResearchPapers";
 export { default as ProtectedRoutes } from "./ProtectedRoutes";
