@@ -55,12 +55,19 @@ const ResearchPapers = () => {
       {filteredResearchPapers?.length > 0 ? (
         <div className="single-collection-container">
           {filteredResearchPapers.map((collection) => {
-            const { _id, fileName, filePath, collectionId, physicalLocation } =
-              collection;
+            const {
+              _id,
+              name,
+              fileName,
+              filePath,
+              collectionId,
+              physicalLocation,
+            } = collection;
             return (
               <SingleResearchPaper
                 key={_id}
                 id={_id}
+                name={name}
                 fileName={fileName}
                 filePath={filePath}
                 collectionId={collectionId}

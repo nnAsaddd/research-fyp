@@ -376,6 +376,9 @@ image {
   margin-top: 1rem;
   color: var(--black);
 }
+.info-container a {
+  color: black;
+}
 
 .btns-container {
   display: flex;
@@ -620,4 +623,65 @@ Single Collection Page
   font-size: 1.7rem;
   letter-spacing: 1px;
   margin-top: 1rem;
+}
+
+/* 
+====================
+Single Research Paper Page
+====================
+*/
+
+.single-research-paper {
+  background-color: var(--white);
+  border-radius: 5px;
+  padding: 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  box-shadow: 2px 2px 5px 1px var(--grey-300);
+}
+
+.single-research-paper-card-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 1.7rem;
+  letter-spacing: 1px;
+  color: var(--grey-700);
+}
+
+.single-research-paper-card-left {
+  display: flex;
+  gap: 1rem;
+}
+
+.single-research-paper-card-right {
+  display: flex;
+  gap: 1rem;
+}
+
+.icon {
+  transition: var(--transition);
+}
+
+.icon:hover {
+  cursor: pointer;
+  transform: scale(1.05);
+}
+
+.pdf-icon {
+  color: var(--primary-1000);
+}
+
+.download-icon {
+  color: var(--green-dark);
+}
+
+.edit-icon {
+  margin-left: 5px;
+  color: var(--primary-800);
+}
+
+.delete-icon {
+  color: rgb(209, 23, 23);
+  font-size: 2rem;
 }

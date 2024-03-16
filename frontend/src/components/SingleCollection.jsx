@@ -3,26 +3,26 @@ import { Link } from "react-router-dom";
 
 const SingleCollectionComponent = ({ id, name, category }) => {
   return (
-    <Link className="link" to={`/collections/${id}`}>
-      <div className="collection-card">
-        <div className="info-container">
-          <p>
+    <div className="collection-card">
+      <div className="info-container">
+        <p>
+          <Link className="link" to={`/collections/${id}`}>
             <strong>Name:</strong> {name}
-          </p>
-          <p>
-            <strong>Category:</strong> {category}
-          </p>
-        </div>
-        <div className="btns-container">
-          <Link to={`/editCollections/${id}`}>
-            <span className="edit-btn">Edit</span>
           </Link>
-          <Link className="delete-btn" to={`/deleteCollections/${id}`}>
-            <span>Delete</span>
-          </Link>
-        </div>
+        </p>
+        <p>
+          <strong>Category:</strong> {category}
+        </p>
       </div>
-    </Link>
+      <div className="btns-container">
+        <Link to={`/editCollections/${id}`}>
+          <span className="edit-btn">Edit</span>
+        </Link>
+        <Link className="delete-btn" to={`/deleteCollections/${id}`}>
+          <span>Delete</span>
+        </Link>
+      </div>
+    </div>
   );
 };
 

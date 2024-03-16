@@ -1,34 +1,37 @@
-import React from "react";
+import React, { useState } from "react";
+import { FaFileAlt, FaEdit, FaDownload } from "react-icons/fa";
+import { MdDelete } from "react-icons/md";
 import { Link } from "react-router-dom";
 
 const SingleResearchPaperComponent = ({
   id,
+  name,
   fileName,
   filePath,
-  physicalLocation,
   collectionId,
 }) => {
+  const pdfURL = `http://localhost:5000/files/${filePath}`;
+
   return (
-    <Link className="link" to={`/collections/${id}`}>
-      <div className="collection-card">
-        <div className="info-container">
-          <p>
-            <strong>File Name:</strong> {fileName}
-          </p>
-          <p>
-            <strong>File Path:</strong> {filePath}
-          </p>
+    <div className="single-research-paper">
+      <div className="single-research-paper-card-container">
+        <div className="single-research-paper-card-left">
+          <FaFileAlt className="icon pdf-icon" />
+          <h4>{name}</h4>
         </div>
-        <div className="btns-container">
+        <div className="single-research-paper-card-right">
+          <a href={pdfURL}>
+            <FaDownload className="icon download-icon" />
+          </a>
           <Link to={`/collections/${collectionId}/editResearchPapers/${id}`}>
-            <span className="edit-btn">Edit</span>
+            <FaEdit className="icon edit-icon" />
           </Link>
           <Link to={`/collections/${collectionId}/deleteResearchPapers/${id}`}>
-            <span className="delete-btn">Delete</span>
+            <MdDelete className="icon delete-icon" />
           </Link>
         </div>
       </div>
-    </Link>
+    </div>
   );
 };
 
