@@ -685,3 +685,72 @@ Single Research Paper Page
   color: rgb(209, 23, 23);
   font-size: 2rem;
 }
+
+/* 
+====================
+  Single Comment
+====================
+*/
+
+.single-comment {
+  margin: 3rem auto;
+}
+.single-comment-btns-wrapper {
+  display: flex;
+  flex-direction: column;
+  max-width: 250px;
+  gap: 1rem;
+}
+.single-comment-btn {
+  font-size: 1.5rem;
+  padding: 1rem 1.5rem;
+  border-radius: 5px;
+  background-color: var(--primary-800);
+  color: var(--white);
+  letter-spacing: 2px;
+  transition: var(--transition);
+}
+.single-comment-btn:hover {
+  cursor: pointer;
+  background-color: var(--primary-700);
+  transform: scale(0.95);
+}
+.edit-btn:hover,
+.delete-btn:hover {
+  transform: scale(1.05);
+}
+
+.comment-container {
+  margin-top: 4rem;
+  padding: 0;
+  display: grid;
+  gap: 2rem;
+}
+
+.comment-card {
+  border-radius: 10px;
+  padding: 2rem;
+  background-color: var(--white);
+}
+
+.comment-info-container {
+  display: flex;
+  margin: 0 auto;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.7rem;
+  letter-spacing: 1px;
+  font-style: italic;
+}
+
+.comment-info-container > p {
+  line-height: 3rem;
+}
+
+.comment-info-container > p > span:nth-child(2) {
+  margin: 0 1rem;
+  font-weight: bold;
+}
+.comment-info-container > p > span:last-child {
+  font-size: 2rem;
+}

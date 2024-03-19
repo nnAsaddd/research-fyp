@@ -4,3 +4,4 @@ export { default as CollectionsForm } from "./CollectionsForm";
 export { default as ReaserchPapersForm } from "./ReaserchPapersForm";
 export { default as SingleCollection } from "./SingleCollection";
 export { default as SingleResearchPaper } from "./SingleResearchPaper";
+export { default as SingleComment } from "./SingleComment";
