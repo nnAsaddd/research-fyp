@@ -15,3 +15,6 @@ export { default as Comments } from "./Comments";
 export { default as CreateComments } from "./CreateComments";
 export { default as EditComment } from "./EditComment";
 export { default as DeleteComment } from "./DeleteComment";
+export { default as ResetPassword } from "./ResetPassword.jsx";
+export { default as ChangePassword } from "./ChangePassword.jsx";
+export { default as ForgotPassword } from "./ForgotPassword.jsx";

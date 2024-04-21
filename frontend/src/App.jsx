@@ -18,6 +18,9 @@ import {
   CreateComments,
   EditComment,
   DeleteComment,
+  ResetPassword,
+  ChangePassword,
+  ForgotPassword
 } from "./pages";
 
 // // Actions
@@ -132,6 +135,19 @@ const router = createBrowserRouter([
         element: <Login />,
         action: loginAction,
       },
+      {
+        path: "/forgotPassword",
+        element : <ForgotPassword/>,
+
+      },
+      {
+        path: "/resetPassword",
+        element: <ResetPassword/>
+      },
+      {
+        path: "/changePassword",
+        element: <ChangePassword/>
+      }
     ],
   },
 ]);

@@ -47,6 +47,16 @@ const Login = () => {
             {isSubmitting ? "Submitting..." : "Submit"}
           </button>
           <div className="register-login">
+            <Link to="/forgotPassword" className="link-btn">
+              Forgot Password?
+            </Link>
+          </div>
+          <div className="register-login">
+            <Link to="/changePassword" className="link-btn">
+              Change Password
+            </Link>
+          </div>
+          <div className="register-login">
             <p>Not a member?</p>
             <Link to="/register" className="link-btn">
               Register

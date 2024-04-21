@@ -754,3 +754,70 @@ Single Research Paper Page
 .comment-info-container > p > span:last-child {
   font-size: 2rem;
 }
+
+/* ResetPassword.css */
+.reset-password-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+  background-color: #f0f2f5;
+}
+
+.bold{
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.reset-password-form {
+  padding: 2rem;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  width: 100%;
+  max-width: 400px;
+  box-sizing: border-box;
+}
+
+.reset-password-form h2 {
+  text-align: center;
+  color: #333;
+}
+
+.reset-password-form label {
+  display: block;
+  margin-top: 20px;
+  color: #666;
+}
+
+.reset-password-form input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.reset-password-form button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 20px;
+  background-color: #0056b3;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.reset-password-form button:hover {
+  background-color: #004494;
+}
+
+/* Responsive design considerations */
+@media (max-width: 600px) {
+  .reset-password-form {
+    padding: 1rem;
+  }
+}
