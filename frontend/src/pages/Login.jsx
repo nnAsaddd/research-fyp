@@ -14,13 +14,11 @@ export const action = async ({ request }) => {
       withCredentials: true,
     });
     toast.success("User Logged in Successfully");
-    localStorage.setItem("userRole", user.role);
     localStorage.setItem("userId", user._id);
+    localStorage.setItem("email", user.email);
     localStorage.setItem("accessToken", accessToken);
     return redirect("/");
   } catch (error) {
-    // console.log(error);
-    // console.log(error?.response?.data);
     toast.error(error?.response?.data?.message);
     return error;
   }

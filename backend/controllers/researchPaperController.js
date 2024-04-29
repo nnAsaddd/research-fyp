@@ -67,6 +67,11 @@ const deleteResearchPaper = async (req, res) => {
   if (!researchPaperId) {
     return res.status(400).json({ message: "No research Paper Id found" });
   }
+  const paperFound = await ResearchPaper.findOne({_id: researchPaperId});
+  if(!paperFound)
+  {
+    return res.status(500).json({message: "No research paper found with given id"});
+  }
   const paper = await ResearchPaper.findOneAndDelete({ _id: researchPaperId });
   if (!paper) {
     return res

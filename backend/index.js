@@ -12,6 +12,7 @@ const authRoutes = require("./routes/authRoute");
 const collectionRoutes = require("./routes/collectionRoute");
 const researchPaperRoutes = require("./routes/researchRoute");
 const commentRoutes = require("./routes/commentRoute");
+const queryRoutes = require("./routes/queryRoute");
 const corsOptions = require("./config/corsOptions");
 app.use(logger);
 app.use(cors(corsOptions));
@@ -20,6 +21,7 @@ app.use(cookieParser());
 
 app.use("/", express.static(path.join(__dirname, "/public")));
 app.use("/files", express.static(path.join(__dirname, "/files")));
+console.log(__dirname + "/files")
 app.use("/", require("./routes/root"));
 // auth routes
 app.use("/auth", authRoutes);
@@ -29,6 +31,8 @@ app.use("/collections", collectionRoutes);
 app.use("/researchPapers", researchPaperRoutes);
 // comment routes
 app.use("/comments", commentRoutes);
+// query routes
+app.use("/query", queryRoutes);
 app.all("*", (req, res)=>{
     res.status(404);
     if(req.accepts("html"))
@@ -44,23 +48,46 @@ app.all("*", (req, res)=>{
 })
 
 app.use(errorHandler);
-const start = async()=> {
-    try{
-        await mongoose
-            .connect(process.env.DATABASE_URL)
-            .then(() => {
-                console.log("Connected to DB")
-            })
-            .catch(err => {
-                console.log("Error while connecting to DB" + err)
-            });
-        app.listen(PORT, () => {
-            console.log("Server Running on port " + PORT);
-        })
-    }catch(err)
-    {
-        console.log("Error" + err);
+// const start = async()=> {
+//     try{
+//         await mongoose
+//             .connect(process.env.DATABASE_URL)
+//             .then(() => {
+//                 console.log("Connected to DB")
+//             })
+//             .catch(err => {
+//                 console.log("Error while connecting to DB" + err)
+//             });
+//         app.listen(PORT, () => {
+//             console.log("Server Running on port " + PORT);
+//         })
+//     }catch(err)
+//     {
+//         console.log("Error" + err);
+//     }
+// }
+//
+// start();
+// Function to start the server
+const start = async () => {
+    try {
+        await mongoose.connect(process.env.DATABASE_URL);
+        console.log("Connected to DB");
+    } catch (err) {
+        console.log("Error while connecting to DB: " + err);
     }
+};
+
+// Check if the script is being run directly (not in a test environment)
+if (require.main === module) {
+    start().then(() => {
+        app.listen(process.env.PORT || 5000, () => {
+            console.log(`Server running on port ${process.env.PORT || 5000}`);
+        });
+    }).catch(err => {
+        console.log("Error starting server: " + err);
+    });
 }
 
-start();
+// Export the app for testing purposes
+module.exports = {app, start};

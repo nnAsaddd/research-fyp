@@ -7,6 +7,11 @@ import { useGlobalContext } from "../context/GlobalProvider";
 export const loader = async () => {
   const accessToken = localStorage.getItem("accessToken");
   const userId = localStorage.getItem("userId");
+  const email = localStorage.getItem("email");
+  const isAdmin = email?.includes("admin") || false;
+  if (isAdmin) {
+    return null;
+  }
   try {
     const { data } = await axios.post(
       `http://localhost:5000/collections/userCollections`,
@@ -27,24 +32,52 @@ export const loader = async () => {
 };
 
 const Collections = () => {
+  const email = localStorage.getItem("email");
+  const isAdmin = email?.includes("admin") || false;
   const { search } = useGlobalContext();
-  const { collections } = useLoaderData();
-
-  const filteredCollections = collections?.filter((collection) => {
-    return (
-      collection.name.toLowerCase().includes(search) ||
-      collection.name.toUpperCase().includes(search)
-    );
-  });
+  const { collections } = !isAdmin && useLoaderData();
+  const filteredCollections =
+    !isAdmin &&
+    collections?.filter((collection) => {
+      return (
+        collection.name.toLowerCase().includes(search) ||
+        collection.name.toUpperCase().includes(search)
+      );
+    });
 
   return (
     <div className="collections wrapper">
-      <h1>Collections Page</h1>
-      <CollectionsForm />
-      <Link to="/createCollections" className="collections-btn">
-        Add Collections
-      </Link>
-      {filteredCollections?.length > 0 ? (
+      <h1 style={{ marginBottom: "1rem" }}>
+        {!isAdmin ? "Collections Page" : "Welcome to Admin Page"}
+      </h1>
+      {!isAdmin && <CollectionsForm />}
+      {!isAdmin ? (
+        <div className="collections-btns-container">
+          <Link to="/createCollections" className="collections-btn">
+            Add Collections
+          </Link>
+          <Link to="/exploreCollections" className="collections-btn">
+            Explore Collections
+          </Link>
+          <Link to="/createQuery" className="collections-btn">
+            Create Query
+          </Link>{" "}
+        </div>
+      ) : (
+        <div className="collections-btns-container">
+          {" "}
+          <Link to="/getAllUsers" className="collections-btn">
+            Get All Users
+          </Link>
+          <Link to="/getAllQueries" className="collections-btn">
+            Get All Queries
+          </Link>{" "}
+        </div>
+      )}
+
+      {isAdmin ? (
+        ""
+      ) : filteredCollections?.length > 0 ? (
         <div className="collections-container">
           {filteredCollections.map((collection) => {
             const { _id, name, category } = collection;

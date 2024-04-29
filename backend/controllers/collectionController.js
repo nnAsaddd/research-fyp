@@ -42,18 +42,13 @@ const createCollection = async (req, res) => {
 
 const deleteCollection = async (req, res) => {
   const { id: collectionId } = req.params;
-  const collectionExist = await Collection.findOneAndDelete({
-    _id: collectionId,
-  });
-  if (!collectionExist) {
-    return res
-      .status(400)
-      .json({ message: "No Collection found with this id" });
+  const col = await Collection.findOne({_id: collectionId});
+  if(!col)
+  {
+    return res.status(400).json({message: "No Collection found with this id"});
   }
-  return res.status(200).json({
-    message: "Collection deleted Successfully",
-    collection: collectionExist,
-  });
+  const collectionExist = await Collection.findOneAndDelete({_id: collectionId});
+  return res.status(200).json({message: "Collection deleted Successfully", collection: collectionExist});
 };
 
 const updateCollection = async (req, res) => {

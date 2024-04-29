@@ -3,7 +3,6 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import {
   SharedLayout,
   ProtectedRoutes,
-  Error,
   Register,
   Login,
   Collections,
@@ -20,13 +19,20 @@ import {
   DeleteComment,
   ResetPassword,
   ChangePassword,
-  ForgotPassword
+  ForgotPassword,
+  ExploreCollections,
+  ExploreResearchPapers,
+  ExploreComments,
+  CreateQuery,
+  GetAllUsers,
+  GetAllQueries,
 } from "./pages";
 
 // // Actions
 import { action as registerAction } from "./pages/Register";
 import { action as loginAction } from "./pages/Login";
 import { action as createCollectionsAction } from "./pages/CreateCollections";
+import { action as createQueryAction } from "./pages/CreateQuery";
 import { action as editCollectionAction } from "./pages/EditCollections";
 import { action as deleteCollectionAction } from "./pages/DeleteCollections";
 import { action as editResearchPaperAction } from "./pages/EditResearchPapers";
@@ -37,12 +43,17 @@ import { action as deleteCommentsAction } from "./pages/DeleteComment";
 
 //  Loaders
 import { loader as collectionsLoader } from "./pages/Collections";
+import { loader as exploreCollectionsLoader } from "./pages/ExploreCollections";
+import { loader as getAllUsersLoader } from "./pages/GetAllUsers";
+import { loader as getAllQueriesLoader } from "./pages/GetAllQueries";
 import { loader as editCollectionLoader } from "./pages/EditCollections";
 import { loader as deleteCollectionLoader } from "./pages/DeleteCollections";
 import { loader as researchPapersLoader } from "./pages/ResearchPapers";
+import { loader as exploreResearchPapersLoader } from "./pages/ExploreResearchPapers";
 import { loader as editResearchPapersLoader } from "./pages/EditResearchPapers";
 import { loader as deleteResearchPapersLoader } from "./pages/DeleteResearchPapers";
 import { loader as commentsLoader } from "./pages/Comments";
+import { loader as exploreCommentsLoader } from "./pages/ExploreComments";
 import { loader as editCommentsLoader } from "./pages/EditComment";
 import { loader as deleteCommentsLoader } from "./pages/DeleteComment";
 
@@ -62,9 +73,30 @@ const router = createBrowserRouter([
             loader: collectionsLoader,
           },
           {
+            path: "/exploreCollections",
+            element: <ExploreCollections />,
+            loader: exploreCollectionsLoader,
+          },
+          {
             path: "/createCollections",
             element: <CreateCollections />,
             action: createCollectionsAction,
+          },
+          {
+            path: "/getAllUsers",
+            element: <GetAllUsers />,
+            loader: getAllUsersLoader,
+          },
+
+          {
+            path: "/getAllQueries",
+            element: <GetAllQueries />,
+            loader: getAllQueriesLoader,
+          },
+          {
+            path: "/createQuery",
+            element: <CreateQuery />,
+            action: createQueryAction,
           },
           {
             path: "/editCollections/:id",
@@ -82,6 +114,11 @@ const router = createBrowserRouter([
             path: "/collections/:collectionId",
             element: <ResearchPapers />,
             loader: researchPapersLoader,
+          },
+          {
+            path: "/exploreCollections/:collectionId",
+            element: <ExploreResearchPapers />,
+            loader: exploreResearchPapersLoader,
           },
           {
             path: "/collections/:collectionId/createResearchPapers",
@@ -103,6 +140,11 @@ const router = createBrowserRouter([
             path: "/collections/:collectionId/researchPapers/:id",
             element: <Comments />,
             loader: commentsLoader,
+          },
+          {
+            path: "/exploreCollections/:collectionId/exploreResearchPapers/:id",
+            element: <ExploreComments />,
+            loader: exploreCommentsLoader,
           },
           {
             path: "/collections/:collectionId/researchPapers/:id/createComments",
@@ -137,17 +179,16 @@ const router = createBrowserRouter([
       },
       {
         path: "/forgotPassword",
-        element : <ForgotPassword/>,
-
+        element: <ForgotPassword />,
       },
       {
         path: "/resetPassword",
-        element: <ResetPassword/>
+        element: <ResetPassword />,
       },
       {
         path: "/changePassword",
-        element: <ChangePassword/>
-      }
+        element: <ChangePassword />,
+      },
     ],
   },
 ]);

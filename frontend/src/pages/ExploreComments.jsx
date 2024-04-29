@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { Link, useParams, useLoaderData } from "react-router-dom";
-import { SingleComment } from "../components";
+import { ExploreSingleComment } from "../components/";
 
 export const loader = async ({ params }) => {
   const { id: researchPaperId } = params;
@@ -27,16 +27,18 @@ export const loader = async ({ params }) => {
   }
 };
 
-const Comments = () => {
+const ExploreComments = () => {
   const { collectionId, id } = useParams();
   const { comments } = useLoaderData();
-  console.log(comments);
   return (
     <div className="single-comment wrapper">
-      <h1 style={{ marginBottom: "1rem" }}>Comments Page</h1>
+      <h1 style={{ marginBottom: "1rem" }}>Explore Comments Page</h1>
       <div className="single-comment-btns-wrapper">
-        <Link to={`/collections/${collectionId}`} className="collections-btn">
-          Go back to Research Papers
+        <Link
+          to={`/exploreCollections/${collectionId}`}
+          className="collections-btn"
+        >
+          Go back to Explore Research Papers
         </Link>
         <Link
           to={`/collections/${collectionId}/researchPapers/${id}/createComments`}
@@ -48,15 +50,12 @@ const Comments = () => {
       {comments?.length > 0 ? (
         <div className="comment-container">
           {comments.map((collection) => {
-            const { _id, text, timeStamp, researchPaperId } = collection;
+            const { _id, text, timeStamp } = collection;
             return (
-              <SingleComment
+              <ExploreSingleComment
                 key={_id}
-                id={_id}
                 text={text}
                 timeStamp={timeStamp}
-                collectionId={collectionId}
-                researchPaperId={researchPaperId}
               />
             );
           })}
@@ -68,4 +67,4 @@ const Comments = () => {
   );
 };
 
-export default Comments;
+export default ExploreComments;

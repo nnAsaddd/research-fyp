@@ -1,7 +1,7 @@
 const User = require("../models/User");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const nodemailer = require("nodemailer")
+const nodemailer = require("nodemailer");
 const getUsers = async (req, res) => {
   const users = await User.find({});
   if (!users || users.length < 1) {
@@ -52,25 +52,19 @@ const loginUser = async (req, res) => {
     name: userExist.name,
     email,
   };
-  const accessToken = await jwt.sign(
-    { userInfo },
-    process.env.ACCESS_TOKEN_SECRET,
-    {
-      expiresIn: "1d",
-    }
-  );
-  return res
-    .status(200)
-    .json({
-      message: "User logged in Successfully",
-      user: userExist,
-      accessToken,
-    });
+  const accessToken = jwt.sign({ userInfo }, process.env.ACCESS_TOKEN_SECRET, {
+    expiresIn: "1d",
+  });
+  return res.status(200).json({
+    message: "User logged in Successfully",
+    user: userExist,
+    accessToken,
+  });
 };
 
 const forgetPassword = async (req, res) => {
   try {
-    const {email} = req.body;
+    const { email } = req.body;
     // Find the user by email
     const user = await User.findOne({ email });
 
@@ -112,9 +106,8 @@ const forgetPassword = async (req, res) => {
   }
 };
 
-const resetPassword = async(req, res) => {
-  const {email, password} = req.body
-  console.log(email, password)
+const resetPassword = async (req, res) => {
+  const { email, password } = req.body;
   if (!email || !password) {
     return res.status(400).json({ message: "Please provide all information" });
   }
@@ -133,10 +126,10 @@ const resetPassword = async(req, res) => {
   userExist.password = hashedPassword;
   await userExist.save();
   console.log(userExist);
-  return res.status(200).json({message: "Password Changed Successfully"});
-}
+  return res.status(200).json({ message: "Password Changed Successfully" });
+};
 
-const changePassword = async(req, res) => {
+const changePassword = async (req, res) => {
   const { email, password, newPassword } = req.body;
   if (!email || !password || !newPassword) {
     return res.status(400).json({ message: "Please provide all information" });
@@ -159,6 +152,13 @@ const changePassword = async(req, res) => {
   }
   userExist.password = hashedPassword;
   await userExist.save();
-  return res.status(200).json({message: "Password Reset Successfully"});
-}
-module.exports = { createNewUser, loginUser, getUsers, forgetPassword, changePassword, resetPassword };
+  return res.status(200).json({ message: "Password Reset Successfully" });
+};
+module.exports = {
+  createNewUser,
+  loginUser,
+  getUsers,
+  forgetPassword,
+  changePassword,
+  resetPassword,
+};
