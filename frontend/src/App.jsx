@@ -26,6 +26,7 @@ import {
   CreateQuery,
   GetAllUsers,
   GetAllQueries,
+  ExploreCreateComments,
 } from "./pages";
 
 // // Actions
@@ -38,9 +39,10 @@ import { action as deleteCollectionAction } from "./pages/DeleteCollections";
 import { action as editResearchPaperAction } from "./pages/EditResearchPapers";
 import { action as deleteResearchPaperAction } from "./pages/DeleteResearchPapers";
 import { action as createCommentAction } from "./pages/CreateComments";
+import { action as exploreCreateCommentsAction } from "./pages/ExploreCreateComments";
 import { action as editCommentsAction } from "./pages/EditComment";
 import { action as deleteCommentsAction } from "./pages/DeleteComment";
-
+exploreCreateCommentsAction;
 //  Loaders
 import { loader as collectionsLoader } from "./pages/Collections";
 import { loader as exploreCollectionsLoader } from "./pages/ExploreCollections";
@@ -145,6 +147,11 @@ const router = createBrowserRouter([
             path: "/exploreCollections/:collectionId/exploreResearchPapers/:id",
             element: <ExploreComments />,
             loader: exploreCommentsLoader,
+          },
+          {
+            path: "/exploreCollections/:collectionId/exploreResearchPapers/:id/createComments",
+            element: <ExploreCreateComments />,
+            action: exploreCreateCommentsAction,
           },
           {
             path: "/collections/:collectionId/researchPapers/:id/createComments",

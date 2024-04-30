@@ -3,6 +3,7 @@ import axios from "axios";
 import { CollectionsForm, SingleCollection, SingleUser } from "../components";
 import { Link, useLoaderData } from "react-router-dom";
 import { useGlobalContext } from "../context/GlobalProvider";
+import { toast } from "react-toastify";
 
 export const loader = async () => {
   const accessToken = localStorage.getItem("accessToken");
@@ -20,6 +21,7 @@ export const loader = async () => {
     );
     return data;
   } catch (error) {
+    toast.error(error?.response?.data?.message);
     return error?.response?.data?.message;
   }
 };

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { Link, useLoaderData } from "react-router-dom";
 import { ReaserchPapersForm, SingleQuery } from "../components";
+import { toast } from "react-toastify";
 
 export const loader = async () => {
   const accessToken = localStorage.getItem("accessToken");
@@ -19,6 +20,7 @@ export const loader = async () => {
     );
     return researchPapers;
   } catch (error) {
+    toast.error(error?.response?.data?.message);
     return error?.response?.data?.message;
   }
 };

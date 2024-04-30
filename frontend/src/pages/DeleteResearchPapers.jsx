@@ -25,7 +25,7 @@ export const loader = async ({ params }) => {
     );
     return data;
   } catch (error) {
-    console.log(error?.response?.data?.message);
+    toast.error(error?.response?.data?.message);
     return error?.response?.data?.message;
   }
 };
@@ -50,7 +50,6 @@ export const action = async ({ request }) => {
     toast.success("Research Paper Deleted Successfully");
     return redirect(`/collections/${credentials.collectionId}`);
   } catch (error) {
-    console.log(error?.response?.data?.message);
     toast.error(error?.response?.data?.message);
     return error;
   }

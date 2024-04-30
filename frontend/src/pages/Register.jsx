@@ -9,14 +9,14 @@ export const action = async ({ request }) => {
 
   try {
     const {
-      data: { user },
+      data: { message, user },
     } = await axios.post("http://localhost:5000/auth/register", credientials, {
       withCredentials: true,
     });
-    toast.success("User Registered Successfully");
+    toast.success(message);
     return redirect("/login");
   } catch (error) {
-    toast.error(error?.response?.data?.msg);
+    toast.error(error?.response?.data?.message);
     return error;
   }
 };

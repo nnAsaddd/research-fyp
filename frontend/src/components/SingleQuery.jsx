@@ -1,9 +1,10 @@
 import axios from "axios";
 import React from "react";
-import { redirect } from "react-router-dom";
+import { redirect, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const SingleQuery = ({ id: queryId, text, email }) => {
+  const navigate = useNavigate();
   const accessToken = localStorage.getItem("accessToken");
   const handleResolve = async (e) => {
     e.preventDefault();
@@ -21,7 +22,7 @@ const SingleQuery = ({ id: queryId, text, email }) => {
       );
       console.log(response);
       toast.success("Query Resolved Successfully");
-      return redirect(`/`);
+      return navigate("/");
     } catch (error) {
       console.log(error);
       toast.error(error?.response?.data?.message);

@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import axios from "axios";
 import { Link, useParams, useLoaderData } from "react-router-dom";
 import { ReaserchPapersForm, SingleResearchPaper } from "../components";
+import { FaPlus } from "react-icons/fa";
+import { toast } from "react-toastify";
 
 export const loader = async ({ params }) => {
   const { collectionId } = params;
@@ -21,6 +23,7 @@ export const loader = async ({ params }) => {
     );
     return researchPapers;
   } catch (error) {
+    toast.error(error?.response?.data?.message);
     return error?.response?.data?.message;
   }
 };
@@ -49,7 +52,7 @@ const ResearchPapers = () => {
           to={`/collections/${collectionId}/createResearchPapers`}
           className="single-collection-btn"
         >
-          Add Research Papers
+          Add Research Papers <FaPlus />
         </Link>
       </div>
       {filteredResearchPapers?.length > 0 ? (

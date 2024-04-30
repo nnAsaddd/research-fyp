@@ -36,8 +36,6 @@ const CreateResearchPapers = () => {
       toast.success("Research Paper Created Successfully");
       return navigate(`/collections/${collectionId}`);
     } catch (error) {
-      console.log(error);
-      console.log(error?.response?.data?.message);
       toast.error(error?.response?.data?.message);
       return error;
     }

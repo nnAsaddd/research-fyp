@@ -15,7 +15,7 @@ const Navbar = () => {
     } catch (error) {
       navigate("/login");
       toast.error(error?.response?.data?.message);
-      return error?.response?.data?.msg;
+      return error?.response?.data?.message;
     }
   };
 

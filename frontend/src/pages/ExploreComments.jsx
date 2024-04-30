@@ -2,6 +2,7 @@ import React from "react";
 import axios from "axios";
 import { Link, useParams, useLoaderData } from "react-router-dom";
 import { ExploreSingleComment } from "../components/";
+import { toast } from "react-toastify";
 
 export const loader = async ({ params }) => {
   const { id: researchPaperId } = params;
@@ -21,8 +22,7 @@ export const loader = async ({ params }) => {
     );
     return data;
   } catch (error) {
-    console.log(error);
-    console.log(error?.response?.data?.message);
+    toast.error(error?.response?.data?.message);
     return error?.response?.data?.message;
   }
 };
@@ -41,7 +41,7 @@ const ExploreComments = () => {
           Go back to Explore Research Papers
         </Link>
         <Link
-          to={`/collections/${collectionId}/researchPapers/${id}/createComments`}
+          to={`/exploreCollections/${collectionId}/exploreResearchPapers/${id}/createComments`}
           className="single-collection-btn"
         >
           Add Comments

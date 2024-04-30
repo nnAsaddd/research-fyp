@@ -25,7 +25,7 @@ export const action = async ({ request }) => {
     toast.success("Query Submitted Successfully!!!");
     return redirect("/");
   } catch (error) {
-    toast.error(error?.response?.data?.msg);
+    toast.error(error?.response?.data?.message);
     return error;
   }
 };

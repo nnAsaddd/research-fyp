@@ -3,6 +3,11 @@ import axios from "axios";
 import { CollectionsForm, SingleCollection } from "../components";
 import { Link, useLoaderData } from "react-router-dom";
 import { useGlobalContext } from "../context/GlobalProvider";
+import { FaUser } from "react-icons/fa";
+import { FaAddressBook } from "react-icons/fa";
+import { FaPlus } from "react-icons/fa";
+import { FaSearch } from "react-icons/fa";
+import { toast } from "react-toastify";
 
 export const loader = async () => {
   const accessToken = localStorage.getItem("accessToken");
@@ -27,6 +32,7 @@ export const loader = async () => {
     );
     return data;
   } catch (error) {
+    toast.error(error?.response?.data?.message);
     return error?.response?.data?.message;
   }
 };
@@ -54,13 +60,13 @@ const Collections = () => {
       {!isAdmin ? (
         <div className="collections-btns-container">
           <Link to="/createCollections" className="collections-btn">
-            Add Collections
+            Add Collections <FaPlus />
           </Link>
           <Link to="/exploreCollections" className="collections-btn">
-            Explore Collections
+            Explore Collections <FaSearch />
           </Link>
           <Link to="/createQuery" className="collections-btn">
-            Create Query
+            Contact Admin <FaUser /> <FaAddressBook />
           </Link>{" "}
         </div>
       ) : (

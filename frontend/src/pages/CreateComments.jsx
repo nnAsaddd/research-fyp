@@ -33,7 +33,7 @@ export const action = async ({ request }) => {
       `/collections/${collectionId}/researchPapers/${researchPaperId}`
     );
   } catch (error) {
-    toast.error(error?.response?.data?.msg);
+    toast.error(error?.response?.data?.message);
     return error;
   }
 };
